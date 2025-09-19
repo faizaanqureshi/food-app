@@ -121,7 +121,7 @@ export default function ComprehensiveForDiners() {
                 </div>
                 <div>
                   <h4 className="font-medium text-white mb-1 sm:mb-2 text-sm sm:text-base">Tell Us Your Taste</h4>
-                  <p className="text-white/90 leading-relaxed text-sm sm:text-base">Rate dishes, set preferences, and we'll learn your flavor profile.</p>
+                  <p className="text-white/90 leading-relaxed text-sm sm:text-base">Rate dishes, set preferences, and dietary restrictions so our AI learns your unique flavor profile and discovers hidden gems you'll love.</p>
                 </div>
               </motion.div>
 
@@ -137,7 +137,7 @@ export default function ComprehensiveForDiners() {
                 </div>
                 <div>
                   <h4 className="font-medium text-white mb-1 sm:mb-2 text-sm sm:text-base">Connect with Similar Diners</h4>
-                  <p className="text-white/90 leading-relaxed text-sm sm:text-base">See what people with your taste buds love.</p>
+                  <p className="text-white/90 leading-relaxed text-sm sm:text-base">Find people with similar taste profiles and see authentic reviews from diners who share your palate and preferences.</p>
                 </div>
               </motion.div>
 
@@ -153,7 +153,7 @@ export default function ComprehensiveForDiners() {
                 </div>
                 <div>
                   <h4 className="font-medium text-white mb-1 sm:mb-2 text-sm sm:text-base">Get Smart Recommendations</h4>
-                  <p className="text-white/90 leading-relaxed text-sm sm:text-base">Dish-level picks at restaurants nearby.</p>
+                  <p className="text-white/90 leading-relaxed text-sm sm:text-base">Get specific dish recommendations at nearby restaurants with real-time availability, pricing, and cuisine suggestions aligned with your taste.</p>
                 </div>
               </motion.div>
 
@@ -169,7 +169,7 @@ export default function ComprehensiveForDiners() {
                 </div>
                 <div>
                   <h4 className="font-medium text-white mb-1 sm:mb-2 text-sm sm:text-base">Dine & Earn</h4>
-                  <p className="text-white/90 leading-relaxed text-sm sm:text-base">Split bills, collect rewards, and unlock loyalty perks.</p>
+                  <p className="text-white/90 leading-relaxed text-sm sm:text-base">Split bills seamlessly with friends, earn points across all restaurants, and unlock exclusive deals and member-only experiences.</p>
                 </div>
               </motion.div>
             </div>

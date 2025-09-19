@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { CheckCircle, Sparkles, Heart } from 'lucide-react';
+import { Heart } from 'lucide-react';
 
 interface ThankYouModalProps {
   isOpen: boolean;
@@ -23,12 +23,24 @@ export default function ThankYouModal({ isOpen, onClose }: ThankYouModalProps) {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
       document.documentElement.style.overflow = 'hidden';
+      
+      // Close modal when clicking navigation links
+      const handleLinkClick = (e: MouseEvent) => {
+        const target = e.target as HTMLElement;
+        if (target.tagName === 'A' || target.closest('a')) {
+          onClose();
+        }
+      };
+      
+      document.addEventListener('click', handleLinkClick);
+      
       return () => {
         document.body.style.overflow = 'unset';
         document.documentElement.style.overflow = 'unset';
+        document.removeEventListener('click', handleLinkClick);
       };
     }
-  }, [isOpen]);
+  }, [isOpen, onClose]);
 
   return (
     <AnimatePresence>
@@ -39,7 +51,7 @@ export default function ThankYouModal({ isOpen, onClose }: ThankYouModalProps) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed top-0 left-0 w-full h-full bg-black/90 backdrop-blur-lg z-[9999]"
+            className="fixed top-0 left-0 w-full h-full bg-black/90 backdrop-blur-xl z-[99999]"
             onClick={onClose}
             style={{ 
               position: 'fixed',
@@ -56,9 +68,10 @@ export default function ThankYouModal({ isOpen, onClose }: ThankYouModalProps) {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.8, y: 50 }}
             transition={{ type: "spring", damping: 25, stiffness: 300 }}
-            className="fixed inset-0 flex items-center justify-center p-4 z-[9999]"
+            className="fixed inset-0 flex items-center justify-center p-4 z-[99999]"
+            onClick={onClose}
           >
-            <div className="relative bg-gradient-to-br from-black via-gray-900 to-black rounded-3xl p-8 max-w-md w-full mx-4 shadow-2xl border border-white/10 overflow-hidden">
+            <div className="relative bg-gradient-to-br from-black via-gray-900 to-black rounded-3xl p-8 max-w-md w-full mx-4 shadow-2xl border border-white/10 overflow-hidden" onClick={onClose}>
               {/* Animated Background Elements */}
               <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-purple-500/5 via-pink-500/5 to-indigo-500/5"></div>
               <div className="absolute top-10 right-10 w-32 h-32 bg-gradient-to-r from-purple-400/10 to-pink-400/10 rounded-full blur-xl"></div>
@@ -95,27 +108,6 @@ export default function ThankYouModal({ isOpen, onClose }: ThankYouModalProps) {
 
               {/* Content */}
               <div className="relative z-10 text-center">
-                {/* Success Icon */}
-                <motion.div
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  transition={{ delay: 0.2, type: "spring", damping: 15 }}
-                  className="flex justify-center mb-6"
-                >
-                  <div className="relative">
-                    <div className="w-20 h-20 bg-gradient-to-r from-green-400 to-emerald-500 rounded-full flex items-center justify-center shadow-2xl">
-                      <CheckCircle className="w-12 h-12 text-white" />
-                    </div>
-                    <motion.div
-                      initial={{ scale: 0 }}
-                      animate={{ scale: 1 }}
-                      transition={{ delay: 0.5, type: "spring", damping: 10 }}
-                      className="absolute -top-2 -right-2 w-8 h-8 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full flex items-center justify-center"
-                    >
-                      <Sparkles className="w-5 h-5 text-white" />
-                    </motion.div>
-                  </div>
-                </motion.div>
 
                 {/* Title */}
                 <motion.h2
@@ -124,7 +116,7 @@ export default function ThankYouModal({ isOpen, onClose }: ThankYouModalProps) {
                   transition={{ delay: 0.3 }}
                   className="text-3xl sm:text-4xl font-light text-white mb-4 leading-tight"
                 >
-                  You're In! ✨
+                  You're In!
                 </motion.h2>
 
                 {/* Message */}
