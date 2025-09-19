@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Heart } from 'lucide-react';
 
@@ -10,6 +11,11 @@ interface ThankYouModalProps {
 
 export default function ThankYouModal({ isOpen, onClose }: ThankYouModalProps) {
   const [showConfetti, setShowConfetti] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     if (isOpen) {
@@ -42,7 +48,9 @@ export default function ThankYouModal({ isOpen, onClose }: ThankYouModalProps) {
     }
   }, [isOpen, onClose]);
 
-  return (
+  if (!mounted) return null;
+
+  const modalContent = (
     <AnimatePresence>
       {isOpen && (
         <>
@@ -51,14 +59,16 @@ export default function ThankYouModal({ isOpen, onClose }: ThankYouModalProps) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed top-0 left-0 w-full h-full bg-black/90 backdrop-blur-xl z-[99999]"
+            className="fixed top-0 left-0 w-full h-full bg-black/60 backdrop-blur-xl"
             onClick={onClose}
             style={{ 
               position: 'fixed',
               top: 0,
               left: 0,
               width: '100vw',
-              height: '100vh'
+              height: '100vh',
+              zIndex: 2147483647,
+              pointerEvents: 'all'
             }}
           />
 
@@ -68,8 +78,9 @@ export default function ThankYouModal({ isOpen, onClose }: ThankYouModalProps) {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.8, y: 50 }}
             transition={{ type: "spring", damping: 25, stiffness: 300 }}
-            className="fixed inset-0 flex items-center justify-center p-4 z-[99999]"
+            className="fixed inset-0 flex items-center justify-center p-4"
             onClick={onClose}
+            style={{ zIndex: 2147483647, pointerEvents: 'all' }}
           >
             <div className="relative bg-gradient-to-br from-black via-gray-900 to-black rounded-3xl p-8 max-w-md w-full mx-4 shadow-2xl border border-white/10 overflow-hidden" onClick={onClose}>
               {/* Animated Background Elements */}
@@ -180,4 +191,6 @@ export default function ThankYouModal({ isOpen, onClose }: ThankYouModalProps) {
       )}
     </AnimatePresence>
   );
+
+  return createPortal(modalContent, document.body);
 }
