@@ -2,10 +2,10 @@ import Image from "next/image";
 
 export default function Header() {
   return (
-    <header className="w-full py-3 sm:py-4 px-4 sm:px-6 flex items-center bg-black relative z-20">
+    <header className="w-full py-3 sm:py-4 px-4 sm:px-6 flex items-center bg-transparent backdrop-blur-sm">
       <div className="flex items-center">
         <Image
-          src="/mirch-logo.png"
+          src="/mirch-logo-transparent.png"
           alt="MIRCH"
           width={120}
           height={40}
