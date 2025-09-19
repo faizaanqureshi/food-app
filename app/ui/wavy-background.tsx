@@ -26,7 +26,7 @@ export const WavyBackground = ({
   [key: string]: any;
 }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [isSafari, setIsSafari] = React.useState(false);
+  const [needsBlurFallback, setNeedsBlurFallback] = React.useState(false);
   
   const getSpeed = () => {
     switch (speed) {
@@ -39,12 +39,16 @@ export const WavyBackground = ({
     }
   };
 
-  // Detect Safari to apply CSS filter fallback (CanvasRenderingContext2D.filter is unreliable on Safari)
+  // Detect browsers that need CSS filter fallback (Safari, Instagram, Facebook, WebKit-based browsers)
   useEffect(() => {
     if (typeof navigator !== "undefined") {
       const ua = navigator.userAgent;
-      const safari = /Safari/i.test(ua) && !/Chrome|CriOS|Android/i.test(ua);
-      setIsSafari(safari);
+      // Check for Safari, Instagram, Facebook, TikTok, Twitter, LinkedIn, and other WebKit browsers
+      const needsBlurFallback = 
+        (/Safari/i.test(ua) && !/Chrome|CriOS|Android/i.test(ua)) || // Safari
+        /Instagram|FBAN|FBAV|Twitter|LinkedInApp|TikTok/i.test(ua) || // Social media browsers
+        /WebKit/i.test(ua) && !/Chrome|CriOS/i.test(ua); // Other WebKit browsers
+      setNeedsBlurFallback(needsBlurFallback);
     }
   }, []);
 
@@ -87,8 +91,8 @@ export const WavyBackground = ({
 
       // Draw elegant waves
       ctx.globalAlpha = waveOpacity;
-      // Safari fallback: apply blur via CSS on <canvas> instead of ctx.filter
-      ctx.filter = isSafari ? "none" : `blur(${blur}px)`;
+      // Browser fallback: apply blur via CSS on <canvas> instead of ctx.filter
+      ctx.filter = needsBlurFallback ? "none" : `blur(${blur}px)`;
 
       for (let i = 0; i < 3; i++) {
         ctx.beginPath();
@@ -134,7 +138,7 @@ export const WavyBackground = ({
       window.removeEventListener("resize", resizeCanvas);
       cancelAnimationFrame(animationId);
     };
-  }, [colors, waveWidth, backgroundFill, blur, speed, waveOpacity, isSafari]);
+  }, [colors, waveWidth, backgroundFill, blur, speed, waveOpacity, needsBlurFallback]);
 
   return (
     <div
@@ -148,13 +152,13 @@ export const WavyBackground = ({
         ref={canvasRef}
         style={{
           // Extend canvas beyond viewport when using CSS blur to prevent white edges
-          width: isSafari ? `calc(100% + ${blur * 4}px)` : "100%",
-          height: isSafari ? `calc(100% + ${blur * 4}px)` : "100%",
-          left: isSafari ? `-${blur * 2}px` : "0",
-          top: isSafari ? `-${blur * 2}px` : "0",
-          // Safari fallback: apply blur as a CSS filter on the canvas element
-          filter: isSafari ? `blur(${blur}px)` : undefined,
-          WebkitFilter: isSafari ? `blur(${blur}px)` : undefined,
+          width: needsBlurFallback ? `calc(100% + ${blur * 4}px)` : "100%",
+          height: needsBlurFallback ? `calc(100% + ${blur * 4}px)` : "100%",
+          left: needsBlurFallback ? `-${blur * 2}px` : "0",
+          top: needsBlurFallback ? `-${blur * 2}px` : "0",
+          // Browser fallback: apply blur as a CSS filter on the canvas element
+          filter: needsBlurFallback ? `blur(${blur}px)` : undefined,
+          WebkitFilter: needsBlurFallback ? `blur(${blur}px)` : undefined,
           willChange: "filter",
           transform: "translateZ(0)"
         }}
