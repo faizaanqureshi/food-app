@@ -131,7 +131,7 @@ export default function EmailForm({
           <button 
             type="submit"
             disabled={isSubmitting}
-            className={`bg-gradient-to-r from-purple-800 to-purple-900 hover:from-purple-900 hover:to-indigo-900 text-white px-6 py-3 rounded-full font-medium transition-all duration-300 shadow-lg hover:shadow-xl whitespace-nowrap text-sm sm:text-base disabled:opacity-50 ${buttonClassName}`}
+            className={`bg-gradient-to-r from-purple-800 to-purple-900 hover:from-purple-700 hover:to-pink-700 text-white px-6 py-3 rounded-full font-medium transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-purple-500/25 whitespace-nowrap text-sm sm:text-base disabled:opacity-50 transform hover:scale-[1.02] ${buttonClassName}`}
           >
             {isSubmitting ? 'Submitting...' : buttonText}
           </button>

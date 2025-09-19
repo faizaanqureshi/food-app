@@ -64,7 +64,7 @@ export default function Hero() {
           {[...Array(20)].map((_, i) => (
             <div
               key={i}
-              className="absolute animate-pulse"
+              className={`absolute animate-pulse ${i >= 12 ? 'hidden sm:block' : ''}`}
               style={{
                 left: `${Math.random() * 100}%`,
                 top: `${Math.random() * 100}%`,
@@ -82,7 +82,7 @@ export default function Hero() {
           {[...Array(12)].map((_, i) => (
             <div
               key={`purple-${i}`}
-              className="absolute"
+              className={`absolute ${i >= 8 ? 'hidden sm:block' : ''}`}
               style={{
                 left: `${Math.random() * 100}%`,
                 top: `${Math.random() * 100}%`,
@@ -100,7 +100,7 @@ export default function Hero() {
           {[...Array(8)].map((_, i) => (
             <div
               key={`pink-${i}`}
-              className="absolute"
+              className={`absolute ${i >= 5 ? 'hidden sm:block' : ''}`}
               style={{
                 left: `${Math.random() * 100}%`,
                 top: `${Math.random() * 100}%`,
@@ -114,13 +114,13 @@ export default function Hero() {
             </div>
           ))}
         </div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pt-20 flex items-center min-h-screen">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pt-28 sm:pt-20 flex items-center min-h-screen">
         <div className="flex flex-col items-center text-center max-w-5xl mx-auto">
           {/* Hero Content */}
           <div className="space-y-8">
             <div className="space-y-6">
               {/* Main Headline */}
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-extralight text-white leading-[1.1] tracking-tight">
+              <h1 className="text-5xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-extralight text-white leading-[1.1] tracking-tight">
                 Dining
                 <span className="block font-light bg-gradient-to-r from-purple-300 via-pink-300 to-purple-400 bg-clip-text text-transparent mt-2 relative">
                   Reimagined
