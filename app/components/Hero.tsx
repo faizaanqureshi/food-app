@@ -21,15 +21,12 @@ export default function Hero() {
             <div className="relative">
               {/* Clean text */}
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-light text-white leading-tight mb-6 sm:mb-8">
-                Find the Dish Everyone's
-                <br className="hidden sm:block" />
-                <span className="sm:hidden"> </span>
-                Talking About
+                The All-in-One Dining App
               </h1>
             </div>
             
             <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/90 mb-8 sm:mb-12 leading-relaxed px-4 sm:px-0">
-              Mirch gives you dish-level reviews, exclusive deals, and a feed that makes discovering your next favorite bite feel like a party.
+              Discover, Order, Pay & Earn Rewards — All in One Dining App.
             </p>
             
             <div className="flex flex-col gap-4 items-center lg:items-start px-4 sm:px-0">
@@ -37,13 +34,13 @@ export default function Hero() {
                 <input
                   type="email"
                   placeholder="Enter your email"
-                  className="flex-1 px-4 py-3 rounded-full border border-gray-300 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 focus:outline-none text-gray-900 placeholder-gray-500 shadow-sm text-sm sm:text-base"
+                  className="flex-1 px-4 py-3 rounded-full border border-gray-300 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 focus:outline-none text-gray-300 placeholder-gray-300 shadow-sm text-sm sm:text-base"
                 />
                 <button className="bg-gradient-to-r from-purple-800 to-purple-900 hover:from-purple-900 hover:to-indigo-900 text-white px-6 py-3 rounded-full font-medium transition-all duration-300 shadow-lg hover:shadow-xl whitespace-nowrap text-sm sm:text-base">
                   Join waitlist
                 </button>
               </div>
-              <a href="#" className="text-white/80 hover:text-white transition-colors font-medium underline underline-offset-4 decoration-2 decoration-white/50 hover:decoration-white text-sm sm:text-base">
+              <a href="#for-restaurants" className="text-white/80 hover:text-white transition-colors font-medium underline underline-offset-4 decoration-2 decoration-white/50 hover:decoration-white text-sm sm:text-base">
                 Restaurant owner? Learn more
               </a>
             </div>
@@ -61,13 +58,8 @@ export default function Hero() {
                 priority
               />
               
-              {/* Elegant ring effects */}
-              <div className="absolute inset-0 rounded-[3rem] border border-purple-300/30 opacity-0 group-hover:opacity-100 transition-all duration-1000 group-hover:scale-105"></div>
-              <div className="absolute inset-0 rounded-[3rem] border border-purple-400/20 opacity-0 group-hover:opacity-100 transition-all duration-1200 delay-200 group-hover:scale-110"></div>
-              <div className="absolute inset-0 rounded-[3rem] border border-purple-500/10 opacity-0 group-hover:opacity-100 transition-all duration-1400 delay-400 group-hover:scale-115"></div>
-              
               {/* Subtle gradient glow */}
-              <div className="absolute inset-0 bg-gradient-to-r from-purple-500/10 via-pink-500/10 to-purple-600/10 rounded-[3rem] blur-2xl opacity-0 group-hover:opacity-100 transition-all duration-800"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-purple-500/5 via-pink-500/5 to-purple-600/5 rounded-[3rem] blur-xl opacity-0 group-hover:opacity-60 transition-all duration-600"></div>
             </div>
           </div>
         </div>

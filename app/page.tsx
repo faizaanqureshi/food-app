@@ -1,13 +1,19 @@
 import Header from "./components/Header";
 import Hero from "./components/Hero";
-import ProblemSolution from "./components/ProblemSolution";
+import ComprehensiveForDiners from "./components/ComprehensiveForDiners";
+import ComprehensiveForRestaurants from "./components/ComprehensiveForRestaurants";
+import ClosingCTA from "./components/ClosingCTA";
+import Footer from "./components/Footer";
 
 export default function Home() {
   return (
-    <div className="min-h-screen flex flex-col bg-gradient-to-b from-gray-50 via-white to-gray-50">
+    <div className="min-h-screen flex flex-col">
       <Header />
       <Hero />
-      <ProblemSolution />
+      <ComprehensiveForDiners />
+      <ComprehensiveForRestaurants />
+      <ClosingCTA />
+      <Footer />
     </div>
   );
 }
