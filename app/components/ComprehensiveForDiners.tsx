@@ -69,29 +69,29 @@ export default function ComprehensiveForDiners() {
       <div className="absolute bottom-32 left-16 w-2 h-16 bg-gradient-to-b from-emerald-400/40 to-transparent blur-sm"></div>
       <div className="absolute bottom-48 right-20 w-2 h-18 bg-gradient-to-b from-blue-400/30 to-transparent blur-sm"></div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-12 sm:mb-16"
         >
-          <div className="inline-flex items-center px-6 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white/90 text-sm font-light mb-6 tracking-wide">
-            <Users className="w-4 h-4 mr-3 text-white/70" />
+          <div className="inline-flex items-center px-4 sm:px-6 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white/90 text-xs sm:text-sm font-light mb-4 sm:mb-6 tracking-wide">
+            <Users className="w-3 h-3 sm:w-4 sm:h-4 mr-2 sm:mr-3 text-white/70" />
             For Food Lovers
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light text-white leading-tight mb-6 sm:mb-8 tracking-tight">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-light text-white leading-tight mb-4 sm:mb-6 lg:mb-8 tracking-tight px-2 sm:px-0">
             Discover Food You'll Actually Love
           </h2>
-          <p className="text-base sm:text-lg md:text-xl lg:text-xl text-white/80 max-w-3xl mx-auto leading-relaxed mb-8 sm:mb-12 font-light">
+          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-white/80 max-w-3xl mx-auto leading-relaxed mb-6 sm:mb-8 lg:mb-12 font-light px-2 sm:px-0">
             Stop guessing what to order. MIRCH learns your taste, connects you with like-minded diners, and shows you exactly which dishes are worth trying.
           </p>
         </motion.div>
 
         {/* Main Content Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-20">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center mb-12 sm:mb-16 lg:mb-20">
           
           {/* Left: The Journey */}
           <motion.div 
@@ -99,29 +99,29 @@ export default function ComprehensiveForDiners() {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="space-y-8"
+            className="space-y-6 sm:space-y-8 px-2 sm:px-0"
           >
             <div>
-              <h3 className="text-2xl sm:text-3xl font-light text-white mb-6 tracking-tight">
+              <h3 className="text-xl sm:text-2xl lg:text-3xl font-light text-white mb-4 sm:mb-6 tracking-tight">
                 How It Works: Your Personalized Dining Journey
               </h3>
             </div>
 
             {/* Journey Steps */}
-            <div className="space-y-6">
+            <div className="space-y-4 sm:space-y-6">
               <motion.div 
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.1 }}
                 viewport={{ once: true }}
-                className="flex items-center gap-4 group"
+                className="flex items-center gap-3 sm:gap-4 group"
               >
-                <div className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-all duration-300">
-                  <Heart className="w-5 h-5 text-white/80" />
+                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-all duration-300">
+                  <Heart className="w-4 h-4 sm:w-5 sm:h-5 text-white/80" />
                 </div>
                 <div>
-                  <h4 className="font-medium text-white mb-2">Tell Us Your Taste</h4>
-                  <p className="text-white/90 leading-relaxed">Rate dishes, set preferences, and we'll learn your flavor profile.</p>
+                  <h4 className="font-medium text-white mb-1 sm:mb-2 text-sm sm:text-base">Tell Us Your Taste</h4>
+                  <p className="text-white/90 leading-relaxed text-sm sm:text-base">Rate dishes, set preferences, and we'll learn your flavor profile.</p>
                 </div>
               </motion.div>
 
@@ -130,14 +130,14 @@ export default function ComprehensiveForDiners() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
                 viewport={{ once: true }}
-                className="flex items-center gap-4 group"
+                className="flex items-center gap-3 sm:gap-4 group"
               >
-                <div className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-all duration-300">
-                  <Users className="w-5 h-5 text-white/80" />
+                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-all duration-300">
+                  <Users className="w-4 h-4 sm:w-5 sm:h-5 text-white/80" />
                 </div>
                 <div>
-                  <h4 className="font-medium text-white mb-2">Connect with Similar Diners</h4>
-                  <p className="text-white/90 leading-relaxed">See what people with your taste buds love.</p>
+                  <h4 className="font-medium text-white mb-1 sm:mb-2 text-sm sm:text-base">Connect with Similar Diners</h4>
+                  <p className="text-white/90 leading-relaxed text-sm sm:text-base">See what people with your taste buds love.</p>
                 </div>
               </motion.div>
 
@@ -146,14 +146,14 @@ export default function ComprehensiveForDiners() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.3 }}
                 viewport={{ once: true }}
-                className="flex items-center gap-4 group"
+                className="flex items-center gap-3 sm:gap-4 group"
               >
-                <div className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-all duration-300">
-                  <Brain className="w-5 h-5 text-white/80" />
+                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-all duration-300">
+                  <Brain className="w-4 h-4 sm:w-5 sm:h-5 text-white/80" />
                 </div>
                 <div>
-                  <h4 className="font-medium text-white mb-2">Get Smart Recommendations</h4>
-                  <p className="text-white/90 leading-relaxed">Dish-level picks at restaurants nearby.</p>
+                  <h4 className="font-medium text-white mb-1 sm:mb-2 text-sm sm:text-base">Get Smart Recommendations</h4>
+                  <p className="text-white/90 leading-relaxed text-sm sm:text-base">Dish-level picks at restaurants nearby.</p>
                 </div>
               </motion.div>
 
@@ -162,14 +162,14 @@ export default function ComprehensiveForDiners() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.4 }}
                 viewport={{ once: true }}
-                className="flex items-center gap-4 group"
+                className="flex items-center gap-3 sm:gap-4 group"
               >
-                <div className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-all duration-300">
-                  <Gift className="w-5 h-5 text-white/80" />
+                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-all duration-300">
+                  <Gift className="w-4 h-4 sm:w-5 sm:h-5 text-white/80" />
                 </div>
                 <div>
-                  <h4 className="font-medium text-white mb-2">Dine & Earn</h4>
-                  <p className="text-white/90 leading-relaxed">Split bills, collect rewards, and unlock loyalty perks.</p>
+                  <h4 className="font-medium text-white mb-1 sm:mb-2 text-sm sm:text-base">Dine & Earn</h4>
+                  <p className="text-white/90 leading-relaxed text-sm sm:text-base">Split bills, collect rewards, and unlock loyalty perks.</p>
                 </div>
               </motion.div>
             </div>

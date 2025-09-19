@@ -1,11 +1,12 @@
 "use client";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import Image from "next/image";
-import { Store, Palette, BarChart3, Users, Camera, Smartphone, CreditCard, Bell, Eye, TrendingUp, Heart, Settings } from "lucide-react";
+import { Store, Palette, BarChart3, Users, Camera, Smartphone, CreditCard, Bell, Eye, TrendingUp, Heart, Settings, Zap, Gift } from "lucide-react";
 
 export default function ComprehensiveForRestaurants() {
   const [selectedTheme, setSelectedTheme] = useState("fine");
+  const [viewMode, setViewMode] = useState("dashboard"); // "dashboard" or "website"
 
   const getThemeStyles = (themeKey: string) => {
     switch(themeKey) {
@@ -15,8 +16,8 @@ export default function ComprehensiveForRestaurants() {
           subtitle: "Warm & Welcoming", 
           description: "Earth tones, handwritten fonts, casual vibe",
           cardGradient: "bg-gradient-to-br from-orange-400 to-yellow-500",
-          orbStyle: { backgroundImage: 'linear-gradient(to bottom right, rgba(249, 115, 22, 0.35), rgba(234, 179, 8, 0.4))' },
-          accentStyle: { backgroundImage: 'linear-gradient(to bottom, rgba(251, 146, 60, 1), transparent)' },
+          orbStyle: { backgroundImage: 'linear-gradient(to bottom right, rgba(249, 115, 22, 0.08), rgba(234, 179, 8, 0.1))' },
+          accentStyle: { backgroundImage: 'linear-gradient(to bottom, rgba(251, 146, 60, 0.3), transparent)' },
           headerGradient: 'linear-gradient(to right, #f97316, #eab308, #fbbf24)',
           titleStyle: { 
             fontFamily: 'Kalam, cursive',
@@ -36,8 +37,8 @@ export default function ComprehensiveForRestaurants() {
           subtitle: "Elegant & Sophisticated",
           description: "Dark themes, serif fonts, luxury feel", 
           cardGradient: "bg-gradient-to-br from-gray-800 to-gray-900",
-          orbStyle: { backgroundImage: 'linear-gradient(to bottom right, rgba(31, 41, 55, 0.4), rgba(17, 24, 39, 0.5))' },
-          accentStyle: { backgroundImage: 'linear-gradient(to bottom, rgba(209, 213, 219, 1), transparent)' },
+          orbStyle: { backgroundImage: 'linear-gradient(to bottom right, rgba(31, 41, 55, 0.1), rgba(17, 24, 39, 0.12))' },
+          accentStyle: { backgroundImage: 'linear-gradient(to bottom, rgba(209, 213, 219, 0.3), transparent)' },
           headerGradient: 'linear-gradient(to right, #374151, #1f2937, #111827)',
           titleStyle: { 
             fontFamily: 'Playfair Display, serif',
@@ -60,8 +61,8 @@ export default function ComprehensiveForRestaurants() {
           subtitle: "Fresh & Energetic",
           description: "Bright colors, modern fonts, vibrant energy",
           cardGradient: "bg-gradient-to-br from-purple-500 to-pink-500", 
-          orbStyle: { backgroundImage: 'linear-gradient(to bottom right, rgba(168, 85, 247, 0.4), rgba(236, 72, 153, 0.5))' },
-          accentStyle: { backgroundImage: 'linear-gradient(to bottom, rgba(192, 132, 252, 1), transparent)' },
+          orbStyle: { backgroundImage: 'linear-gradient(to bottom right, rgba(168, 85, 247, 0.1), rgba(236, 72, 153, 0.12))' },
+          accentStyle: { backgroundImage: 'linear-gradient(to bottom, rgba(192, 132, 252, 0.3), transparent)' },
           headerGradient: 'linear-gradient(to right, #a855f7, #ec4899, #f97316)',
           titleStyle: { 
             fontFamily: 'Nunito, sans-serif',
@@ -202,17 +203,17 @@ export default function ComprehensiveForRestaurants() {
             For Restaurant Owners
           </div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400 leading-tight mb-6 sm:mb-8 tracking-tight">
-            Your Restaurant, Your Rules, Your Success
+            Your Restaurant's Official Online Home
           </h2>
           <p className="text-base sm:text-lg md:text-xl lg:text-xl text-white/80 max-w-3xl mx-auto leading-relaxed mb-8 sm:mb-12 font-light">
-            Take complete control of your restaurant's digital presence. Customize everything, understand your customers deeply, and build lasting relationships.
+            Your MIRCH profile doubles as your restaurant's official website — customizable, discoverable, and always up to date.
           </p>
         </motion.div>
 
         {/* Main Content Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-20">
           
-          {/* Left: Dashboard Mockup */}
+          {/* Left: Mockup View with Toggle */}
           <motion.div 
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -220,13 +221,54 @@ export default function ComprehensiveForRestaurants() {
             viewport={{ once: true }}
             className="relative order-2 lg:order-1"
           >
-            <div className="relative group">
-              {/* Device Shell */}
-              <div className="bg-white/10 rounded-3xl p-3 backdrop-blur-xl border border-white/10 shadow-[0_25px_100px_-20px_rgba(0,0,0,0.6)]">
-                <div className="rounded-2xl overflow-hidden bg-gradient-to-b from-gray-900 to-black text-white">
+            {/* Toggle Controls */}
+            <div className="flex justify-center mb-6">
+              <div className="bg-white/10 backdrop-blur-md rounded-full p-1 border border-white/20">
+                <button
+                  onClick={() => setViewMode("dashboard")}
+                  className={`px-4 py-2 rounded-full text-xs font-medium transition-all duration-300 ${
+                    viewMode === "dashboard"
+                      ? "bg-white/20 text-white shadow-lg"
+                      : "text-white/60 hover:text-white/80"
+                  }`}
+                >
+                  <div className="flex items-center gap-2">
+                    <Settings className="w-3 h-3" />
+                    Owner Dashboard
+                  </div>
+                </button>
+                <button
+                  onClick={() => setViewMode("website")}
+                  className={`px-4 py-2 rounded-full text-xs font-medium transition-all duration-300 ${
+                    viewMode === "website"
+                      ? "bg-white/20 text-white shadow-lg"
+                      : "text-white/60 hover:text-white/80"
+                  }`}
+                >
+                  <div className="flex items-center gap-2">
+                    <Eye className="w-3 h-3" />
+                    Live Website
+                  </div>
+                </button>
+              </div>
+            </div>
+
+            {/* Animated Views */}
+            <AnimatePresence mode="wait">
+              {viewMode === "dashboard" && (
+                <motion.div 
+                  key="dashboard"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.4 }}
+                  className="relative group"
+                >
+              <div className="bg-white/10 rounded-2xl p-2 backdrop-blur-xl border border-white/10 shadow-[0_15px_60px_-20px_rgba(0,0,0,0.4)]">
+                <div className="rounded-xl overflow-hidden bg-gradient-to-b from-gray-900 to-black text-white">
                   {/* Dashboard Header */}
                   <div 
-                    className="px-6 py-5 transition-all duration-1000"
+                    className="px-4 py-3 transition-all duration-1000"
                     style={{ backgroundImage: getThemeStyles(selectedTheme).headerGradient }}
                   >
                     <div className="flex items-center justify-between">
@@ -235,20 +277,20 @@ export default function ComprehensiveForRestaurants() {
                           <Store className="w-6 h-6 text-white" />
                         </div>
                         <div>
-                          <h3 className="text-white font-semibold text-lg tracking-tight">Bella Vista Dashboard</h3>
-                          <p className="text-white/85 text-sm">Complete Restaurant Control</p>
+                          <h3 className="text-white font-semibold text-sm tracking-tight">Bella Vista Dashboard</h3>
+                          <p className="text-white/85 text-xs">Complete Restaurant Control</p>
                         </div>
                       </div>
-                      <div className="flex gap-2">
-                        <div className="w-3 h-3 bg-red-300 rounded-full"></div>
-                        <div className="w-3 h-3 bg-yellow-300 rounded-full"></div>
-                        <div className="w-3 h-3 bg-green-300 rounded-full"></div>
+                      <div className="flex gap-1">
+                        <div className="w-2 h-2 bg-red-300 rounded-full"></div>
+                        <div className="w-2 h-2 bg-yellow-300 rounded-full"></div>
+                        <div className="w-2 h-2 bg-green-300 rounded-full"></div>
                       </div>
                     </div>
                   </div>
 
                   {/* Dashboard Content */}
-                  <div className="p-6 space-y-6">
+                  <div className="p-4 space-y-4">
                     {/* Stats Row */}
                     <div className="grid grid-cols-3 gap-4">
                       <div className="rounded-xl p-5 bg-gray-800/60 backdrop-blur-sm border border-gray-700/50 hover:shadow-md transition">
@@ -369,9 +411,335 @@ export default function ComprehensiveForRestaurants() {
                 </div>
               </div>
               
-              {/* Glow Effect */}
-              <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/10 via-blue-500/10 to-purple-500/10 rounded-2xl blur-2xl opacity-0 group-hover:opacity-70 transition-all duration-500"></div>
-            </div>
+                  {/* Glow Effect */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/10 via-blue-500/10 to-purple-500/10 rounded-2xl blur-2xl opacity-0 group-hover:opacity-70 transition-all duration-500"></div>
+                </motion.div>
+              )}
+
+              {viewMode === "website" && (
+                <motion.div 
+                  key="website"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.4 }}
+                  className="relative group"
+                >
+                  {/* Browser Window Frame */}
+                  <div className="bg-white/10 rounded-2xl p-2 backdrop-blur-xl border border-white/10 shadow-[0_25px_100px_-20px_rgba(0,0,0,0.6)]">
+                    {/* Browser Top Bar */}
+                    <div className="flex items-center gap-2 px-3 py-2 bg-gray-800 rounded-t-xl">
+                      <div className="flex gap-1.5">
+                        <div className="w-2.5 h-2.5 bg-red-500 rounded-full"></div>
+                        <div className="w-2.5 h-2.5 bg-yellow-500 rounded-full"></div>
+                        <div className="w-2.5 h-2.5 bg-green-500 rounded-full"></div>
+                      </div>
+                      <div className="flex-1 bg-gray-700 rounded-md px-3 py-1 mx-4">
+                        <span className="text-xs text-gray-300">bellavista.mirch.com</span>
+                      </div>
+                    </div>
+
+                    {/* Website Content */}
+                    <div 
+                      className="rounded-b-xl overflow-hidden text-white relative transition-all duration-1000"
+                      style={{
+                        backgroundImage: selectedTheme === "cozy" 
+                          ? 'linear-gradient(to bottom, #451a03, #7c2d12, #1c1917)'
+                          : selectedTheme === "fine"
+                          ? 'linear-gradient(to bottom, #111827, #1f2937, #000000)'
+                          : 'linear-gradient(to bottom, #581c87, #7c3aed, #1e1b4b)'
+                      }}
+                    >
+                      {/* Navigation Bar */}
+                      <nav className="flex items-center justify-between px-4 py-3 bg-black/20 backdrop-blur-sm border-b border-white/10">
+                        <div 
+                          className="text-sm font-bold tracking-wide text-white transition-all duration-1000"
+                          style={selectedTheme === "cozy" ? {
+                            fontFamily: 'Kalam, cursive',
+                            transform: 'rotate(-0.5deg)'
+                          } : selectedTheme === "fine" ? {
+                            fontFamily: 'Playfair Display, serif',
+                            letterSpacing: '0.08em',
+                            textTransform: 'uppercase'
+                          } : {
+                            fontFamily: 'Nunito, sans-serif',
+                            fontWeight: '800'
+                          }}
+                        >
+                          Bella Vista
+                        </div>
+                        <div className="hidden sm:flex items-center gap-4 text-xs text-white/80">
+                          <span className="hover:text-white cursor-pointer">Menu</span>
+                          <span className="hover:text-white cursor-pointer">Reservations</span>
+                          <span className="hover:text-white cursor-pointer">Reviews</span>
+                          <span className="hover:text-white cursor-pointer">Contact</span>
+                        </div>
+                        <div className="flex items-center gap-3">
+                          <div className="flex items-center gap-1 text-xs">
+                            <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full"></div>
+                            <span className="text-emerald-400 font-medium">Open</span>
+                          </div>
+                          <div className="flex items-center gap-1 text-xs text-blue-400">
+                            <Heart className="w-2.5 h-2.5 fill-current" />
+                            <span>4.8</span>
+                          </div>
+                          <div className="text-xs text-purple-400 font-medium">Verified</div>
+                        </div>
+                      </nav>
+
+                      {/* Hero Section with Background */}
+                      <div 
+                        className="relative h-32 overflow-hidden transition-all duration-1000"
+                        style={{
+                          backgroundImage: selectedTheme === "cozy" 
+                            ? 'linear-gradient(to bottom right, #ea580c, #dc2626, #a16207)'
+                            : selectedTheme === "fine"
+                            ? 'linear-gradient(to bottom right, #374151, #1f2937, #111827)'
+                            : 'linear-gradient(to bottom right, #a855f7, #ec4899, #7c3aed)'
+                        }}
+                      >
+                        {/* Food Background Pattern */}
+                        <div className="absolute inset-0 opacity-20">
+                          <div className="absolute top-2 left-4 w-8 h-8 bg-yellow-400 rounded-full blur-sm"></div>
+                          <div className="absolute top-6 right-6 w-6 h-6 bg-red-400 rounded-full blur-sm"></div>
+                          <div className="absolute bottom-4 left-8 w-4 h-4 bg-orange-400 rounded-full blur-sm"></div>
+                          <div className="absolute bottom-6 right-4 w-5 h-5 bg-pink-400 rounded-full blur-sm"></div>
+                        </div>
+                        
+                        {/* Hero Content */}
+                        <div className="relative z-10 flex items-center justify-center h-full px-4">
+                          <div className="text-center">
+                            <h1 
+                              className="text-lg font-bold mb-1 text-white drop-shadow-lg transition-all duration-1000"
+                              style={selectedTheme === "cozy" ? {
+                                fontFamily: 'Kalam, cursive',
+                                transform: 'rotate(-0.3deg)',
+                                color: '#fbbf24'
+                              } : selectedTheme === "fine" ? {
+                                fontFamily: 'Playfair Display, serif',
+                                letterSpacing: '0.05em',
+                                textTransform: 'uppercase',
+                                fontWeight: '300'
+                              } : {
+                                fontFamily: 'Nunito, sans-serif',
+                                fontWeight: '800',
+                                color: '#ff6bff'
+                              }}
+                            >
+                              Welcome to Bella Vista
+                            </h1>
+                            <p 
+                              className="text-xs text-white/90 drop-shadow-md transition-all duration-1000"
+                              style={selectedTheme === "cozy" ? {
+                                fontStyle: 'italic',
+                                color: '#f59e0b'
+                              } : selectedTheme === "fine" ? {
+                                letterSpacing: '0.03em',
+                                textTransform: 'uppercase',
+                                fontSize: '0.7rem'
+                              } : {
+                                fontWeight: '600',
+                                color: '#f472b6'
+                              }}
+                            >
+                              Authentic Italian cuisine in the heart of downtown Toronto
+                            </p>
+                          </div>
+                        </div>
+                        
+                        {/* Glassmorphism Overlay */}
+                        <div className="absolute inset-0 bg-black/20 backdrop-blur-[1px]"></div>
+                      </div>
+
+                      {/* Featured Dishes Section */}
+                      <div className="p-4 space-y-3">
+                        <div className="flex items-center justify-between mb-3">
+                          <h3 className="text-sm font-semibold text-white">Featured Dishes</h3>
+                          <div className="flex items-center gap-1 text-xs text-blue-400">
+                            <Users className="w-3 h-3" />
+                            <span>Loved by MIRCH diners</span>
+                          </div>
+                        </div>
+                        
+                        <div className="grid grid-cols-2 gap-3">
+                          {/* Truffle Pasta Card */}
+                          <div className="bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 overflow-hidden group hover:bg-white/10 transition-all duration-300">
+                            <div className="h-16 relative overflow-hidden">
+                              <Image 
+                                src="/truffle-risotto.png" 
+                                alt="Truffle Pasta" 
+                                fill
+                                className="object-cover"
+                              />
+                              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+                            </div>
+                            <div className="p-2">
+                              <div className="flex items-center justify-between mb-1">
+                                <h4 className="text-xs font-medium text-white">Truffle Pasta</h4>
+                                <div className="flex items-center gap-1">
+                                  <TrendingUp className="w-2.5 h-2.5 text-green-400" />
+                                  <span className="text-xs text-green-400">4.9</span>
+                                </div>
+                              </div>
+                              <div className="flex items-center justify-between">
+                                <span 
+                                  className="text-xs font-semibold transition-colors duration-1000"
+                                  style={{
+                                    color: selectedTheme === "cozy" 
+                                      ? '#f59e0b' 
+                                      : selectedTheme === "fine"
+                                      ? '#e5e7eb'
+                                      : '#f472b6'
+                                  }}
+                                >
+                                  {selectedTheme === "cozy" ? '24 coins' : selectedTheme === "fine" ? '$24' : '24 pts'}
+                                </span>
+                                <button 
+                                  className="text-white text-xs px-2 py-1 rounded-md hover:shadow-lg transition-all duration-300 group-hover:scale-105"
+                                  style={{
+                                    backgroundImage: selectedTheme === "cozy" 
+                                      ? 'linear-gradient(to right, #ea580c, #dc2626)'
+                                      : selectedTheme === "fine"
+                                      ? 'linear-gradient(to right, #374151, #1f2937)'
+                                      : 'linear-gradient(to right, #a855f7, #ec4899)',
+                                    boxShadow: selectedTheme === "cozy" 
+                                      ? '0 4px 14px 0 rgba(234, 88, 12, 0.25)'
+                                      : selectedTheme === "fine"
+                                      ? '0 4px 14px 0 rgba(55, 65, 81, 0.25)'
+                                      : '0 4px 14px 0 rgba(168, 85, 247, 0.25)'
+                                  }}
+                                >
+                                  Order
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Wagyu Steak Card */}
+                          <div className="bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 overflow-hidden group hover:bg-white/10 transition-all duration-300">
+                            <div className="h-16 relative overflow-hidden">
+                              <Image 
+                                src="/wagyu.png" 
+                                alt="Wagyu Steak" 
+                                fill
+                                className="object-cover"
+                              />
+                              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+                            </div>
+                            <div className="p-2">
+                              <div className="flex items-center justify-between mb-1">
+                                <h4 className="text-xs font-medium text-white">Wagyu Steak</h4>
+                                <div className="flex items-center gap-1">
+                                  <Heart className="w-2.5 h-2.5 text-red-400 fill-current" />
+                                  <span className="text-xs text-red-400">4.8</span>
+                                </div>
+                              </div>
+                              <div className="flex items-center justify-between">
+                                <span 
+                                  className="text-xs font-semibold transition-colors duration-1000"
+                                  style={{
+                                    color: selectedTheme === "cozy" 
+                                      ? '#f59e0b' 
+                                      : selectedTheme === "fine"
+                                      ? '#e5e7eb'
+                                      : '#f472b6'
+                                  }}
+                                >
+                                  {selectedTheme === "cozy" ? '48 coins' : selectedTheme === "fine" ? '$48' : '48 pts'}
+                                </span>
+                                <button 
+                                  className="text-white text-xs px-2 py-1 rounded-md hover:shadow-lg transition-all duration-300 group-hover:scale-105"
+                                  style={{
+                                    backgroundImage: selectedTheme === "cozy" 
+                                      ? 'linear-gradient(to right, #ea580c, #dc2626)'
+                                      : selectedTheme === "fine"
+                                      ? 'linear-gradient(to right, #374151, #1f2937)'
+                                      : 'linear-gradient(to right, #a855f7, #ec4899)',
+                                    boxShadow: selectedTheme === "cozy" 
+                                      ? '0 4px 14px 0 rgba(234, 88, 12, 0.25)'
+                                      : selectedTheme === "fine"
+                                      ? '0 4px 14px 0 rgba(55, 65, 81, 0.25)'
+                                      : '0 4px 14px 0 rgba(168, 85, 247, 0.25)'
+                                  }}
+                                >
+                                  Order
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* MIRCH Platform Features */}
+                        <div className="bg-white/5 backdrop-blur-sm rounded-lg p-3 border border-purple-500/20 mb-3">
+                          <div className="flex items-center gap-2 mb-2">
+                            <div className="w-4 h-4 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center">
+                              <Smartphone className="w-2 h-2 text-white" />
+                            </div>
+                            <span className="text-xs font-medium text-purple-300">MIRCH Platform Integration</span>
+                          </div>
+                          <div className="grid grid-cols-3 gap-2 text-xs">
+                            <div className="text-center">
+                              <div className="w-6 h-6 bg-blue-500/20 rounded-full flex items-center justify-center mx-auto mb-1">
+                                <Users className="w-3 h-3 text-blue-400" />
+                              </div>
+                              <span className="text-white/70">Discoverable</span>
+                            </div>
+                            <div className="text-center">
+                              <div className="w-6 h-6 bg-yellow-500/20 rounded-full flex items-center justify-center mx-auto mb-1">
+                                <TrendingUp className="w-3 h-3 text-yellow-400" />
+                              </div>
+                              <span className="text-white/70">Reviews</span>
+                            </div>
+                            <div className="text-center">
+                              <div className="w-6 h-6 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-1">
+                                <Gift className="w-3 h-3 text-green-400" />
+                              </div>
+                              <span className="text-white/70">Loyalty</span>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Bottom Actions */}
+                        <div className="flex gap-2 pt-2">
+                          <button 
+                            className="flex-1 text-white text-xs py-2.5 rounded-lg font-medium hover:shadow-lg transition-all duration-300"
+                            style={{
+                              backgroundImage: selectedTheme === "cozy" 
+                                ? 'linear-gradient(to right, #ea580c, #dc2626)'
+                                : selectedTheme === "fine"
+                                ? 'linear-gradient(to right, #374151, #1f2937)'
+                                : 'linear-gradient(to right, #a855f7, #ec4899)',
+                              boxShadow: selectedTheme === "cozy" 
+                                ? '0 4px 14px 0 rgba(234, 88, 12, 0.25)'
+                                : selectedTheme === "fine"
+                                ? '0 4px 14px 0 rgba(55, 65, 81, 0.25)'
+                                : '0 4px 14px 0 rgba(168, 85, 247, 0.25)'
+                            }}
+                          >
+                            Full Menu
+                          </button>
+                          <button className="flex-1 bg-white/10 backdrop-blur-sm border border-white/20 text-white text-xs py-2.5 rounded-lg font-medium hover:bg-white/20 transition-all duration-300">
+                            Reserve Table
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* Glow Effect */}
+                  <div 
+                    className="absolute inset-0 rounded-2xl blur-2xl opacity-0 group-hover:opacity-70 transition-all duration-500"
+                    style={{
+                      backgroundImage: selectedTheme === "cozy" 
+                        ? 'linear-gradient(to right, rgba(234, 88, 12, 0.1), rgba(220, 38, 38, 0.1), rgba(161, 98, 7, 0.1))'
+                        : selectedTheme === "fine"
+                        ? 'linear-gradient(to right, rgba(55, 65, 81, 0.1), rgba(31, 41, 55, 0.1), rgba(17, 24, 39, 0.1))'
+                        : 'linear-gradient(to right, rgba(168, 85, 247, 0.1), rgba(236, 72, 153, 0.1), rgba(124, 58, 237, 0.1))'
+                    }}
+                  ></div>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </motion.div>
 
           {/* Right: Content */}
@@ -398,6 +766,22 @@ export default function ComprehensiveForRestaurants() {
                 className="flex items-center gap-4 group"
               >
                 <div className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-all duration-300">
+                  <Zap className="w-5 h-5 text-white/80" />
+                </div>
+                <div>
+                  <h4 className="font-medium text-white mb-2">Your Website, Instantly</h4>
+                  <p className="text-white/90 leading-relaxed">No need for WordPress or extra hosting. Your MIRCH page is your official website with menu, hours, reservations, and online ordering.</p>
+                </div>
+              </motion.div>
+
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                viewport={{ once: true }}
+                className="flex items-center gap-4 group"
+              >
+                <div className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-all duration-300">
                   <Palette className="w-5 h-5 text-white/80" />
                 </div>
                 <div>
@@ -409,7 +793,7 @@ export default function ComprehensiveForRestaurants() {
               <motion.div 
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.2 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
                 viewport={{ once: true }}
                 className="flex items-center gap-4 group"
               >
@@ -425,7 +809,7 @@ export default function ComprehensiveForRestaurants() {
               <motion.div 
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.3 }}
+                transition={{ duration: 0.5, delay: 0.4 }}
                 viewport={{ once: true }}
                 className="flex items-center gap-4 group"
               >
@@ -441,7 +825,7 @@ export default function ComprehensiveForRestaurants() {
               <motion.div 
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.4 }}
+                transition={{ duration: 0.5, delay: 0.5 }}
                 viewport={{ once: true }}
                 className="flex items-center gap-4 group"
               >
