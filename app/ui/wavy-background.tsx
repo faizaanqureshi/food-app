@@ -26,6 +26,7 @@ export const WavyBackground = ({
   [key: string]: any;
 }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [isSafari, setIsSafari] = React.useState(false);
   
   const getSpeed = () => {
     switch (speed) {
@@ -37,6 +38,15 @@ export const WavyBackground = ({
         return 0.004;
     }
   };
+
+  // Detect Safari to apply CSS filter fallback (CanvasRenderingContext2D.filter is unreliable on Safari)
+  useEffect(() => {
+    if (typeof navigator !== "undefined") {
+      const ua = navigator.userAgent;
+      const safari = /Safari/i.test(ua) && !/Chrome|CriOS|Android/i.test(ua);
+      setIsSafari(safari);
+    }
+  }, []);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -77,7 +87,8 @@ export const WavyBackground = ({
 
       // Draw elegant waves
       ctx.globalAlpha = waveOpacity;
-      ctx.filter = `blur(${blur}px)`;
+      // Safari fallback: apply blur via CSS on <canvas> instead of ctx.filter
+      ctx.filter = isSafari ? "none" : `blur(${blur}px)`;
 
       for (let i = 0; i < 3; i++) {
         ctx.beginPath();
@@ -123,7 +134,7 @@ export const WavyBackground = ({
       window.removeEventListener("resize", resizeCanvas);
       cancelAnimationFrame(animationId);
     };
-  }, [colors, waveWidth, backgroundFill, blur, speed, waveOpacity]);
+  }, [colors, waveWidth, backgroundFill, blur, speed, waveOpacity, isSafari]);
 
   return (
     <div
@@ -133,11 +144,19 @@ export const WavyBackground = ({
       )}
     >
       <canvas
-        className="absolute inset-0 z-0"
+        className="absolute z-0"
         ref={canvasRef}
         style={{
-          width: "100%",
-          height: "100%",
+          // Extend canvas beyond viewport when using CSS blur to prevent white edges
+          width: isSafari ? `calc(100% + ${blur * 4}px)` : "100%",
+          height: isSafari ? `calc(100% + ${blur * 4}px)` : "100%",
+          left: isSafari ? `-${blur * 2}px` : "0",
+          top: isSafari ? `-${blur * 2}px` : "0",
+          // Safari fallback: apply blur as a CSS filter on the canvas element
+          filter: isSafari ? `blur(${blur}px)` : undefined,
+          WebkitFilter: isSafari ? `blur(${blur}px)` : undefined,
+          willChange: "filter",
+          transform: "translateZ(0)"
         }}
       />
       <div className={cn("relative z-10", className)} {...props}>
