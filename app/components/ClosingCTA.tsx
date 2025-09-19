@@ -1,3 +1,5 @@
+import EmailForm from "./EmailForm";
+
 export default function ClosingCTA() {
   return (
     <section className="py-16 sm:py-20 lg:py-24 bg-gradient-to-br from-purple-600 via-purple-700 to-indigo-800 relative overflow-hidden">
@@ -15,15 +17,15 @@ export default function ClosingCTA() {
         </p>
 
         {/* Final CTA */}
-        <div className="flex flex-col sm:flex-row gap-4 items-center justify-center max-w-md mx-auto">
-          <input
-            type="email"
+        <div className="flex justify-center max-w-md mx-auto">
+          <EmailForm 
+            source="closing-cta"
             placeholder="Enter your email"
-            className="flex-1 w-full sm:w-auto px-6 py-4 rounded-full border border-white/30 bg-white/10 backdrop-blur-md focus:border-white/50 focus:ring-2 focus:ring-white/20 focus:outline-none text-white placeholder-white/80 shadow-lg text-base"
+            buttonText="Join Waitlist"
+            className="w-full"
+            inputClassName="px-6 py-4 border-white/30 bg-white/10 backdrop-blur-md focus:border-white/50 focus:ring-2 focus:ring-white/20 text-white placeholder-white/80 shadow-lg text-base"
+            buttonClassName="bg-white hover:bg-gray-100 text-purple-700 px-8 py-4 font-semibold shadow-lg hover:shadow-xl"
           />
-          <button className="w-full sm:w-auto bg-white hover:bg-gray-100 text-purple-700 px-8 py-4 rounded-full font-semibold transition-all duration-300 shadow-lg hover:shadow-xl whitespace-nowrap">
-            Join Waitlist
-          </button>
         </div>
 
         <p className="text-white/60 text-sm mt-6">

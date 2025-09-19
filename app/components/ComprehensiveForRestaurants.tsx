@@ -46,12 +46,12 @@ export default function ComprehensiveForRestaurants() {
             textShadow: '0 4px 20px rgba(0, 0, 0, 0.8)',
             letterSpacing: '0.08em',
             fontWeight: '300',
-            textTransform: 'uppercase'
+            textTransform: 'uppercase' as const
           },
           subtitleStyle: {
             color: '#e2e8f0',
             letterSpacing: '0.05em',
-            textTransform: 'uppercase',
+            textTransform: 'uppercase' as const,
             fontSize: '0.95em'
           }
         };
@@ -75,7 +75,7 @@ export default function ComprehensiveForRestaurants() {
           subtitleStyle: {
             color: '#f472b6',
             fontWeight: '600',
-            textTransform: 'uppercase',
+            textTransform: 'uppercase' as const,
             letterSpacing: '0.1em'
           }
         };
@@ -460,7 +460,7 @@ export default function ComprehensiveForRestaurants() {
                           } : selectedTheme === "fine" ? {
                             fontFamily: 'Playfair Display, serif',
                             letterSpacing: '0.08em',
-                            textTransform: 'uppercase'
+                            textTransform: 'uppercase' as const
                           } : {
                             fontFamily: 'Nunito, sans-serif',
                             fontWeight: '800'
@@ -518,7 +518,7 @@ export default function ComprehensiveForRestaurants() {
                               } : selectedTheme === "fine" ? {
                                 fontFamily: 'Playfair Display, serif',
                                 letterSpacing: '0.05em',
-                                textTransform: 'uppercase',
+                                textTransform: 'uppercase' as const,
                                 fontWeight: '300'
                               } : {
                                 fontFamily: 'Nunito, sans-serif',
@@ -535,7 +535,7 @@ export default function ComprehensiveForRestaurants() {
                                 color: '#f59e0b'
                               } : selectedTheme === "fine" ? {
                                 letterSpacing: '0.03em',
-                                textTransform: 'uppercase',
+                                textTransform: 'uppercase' as const,
                                 fontSize: '0.7rem'
                               } : {
                                 fontWeight: '600',
