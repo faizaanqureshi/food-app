@@ -154,17 +154,17 @@ export default function ComprehensiveForRestaurants() {
       {/* Subtle texture overlay */}
       <div className="absolute inset-0 opacity-[0.03] bg-gradient-to-br from-white/10 via-transparent to-white/5"></div>
       
-      {/* Floating gradient orbs for restaurant ambience - Dynamic with Wave Animation */}
+      {/* Floating gradient orbs for restaurant ambience - Dynamic with Wave Animation - Less prominent on mobile */}
       <div 
-        className="absolute top-20 right-10 w-96 h-96 rounded-full blur-3xl transition-all duration-1500 ease-out"
+        className="absolute top-20 right-10 w-48 h-48 sm:w-72 sm:h-72 lg:w-96 lg:h-96 rounded-full blur-3xl sm:blur-[4rem] lg:blur-3xl transition-all duration-1500 ease-out opacity-30 sm:opacity-60 lg:opacity-100"
         style={{
           ...getThemeStyles(selectedTheme).orbStyle,
           animation: 'theme-wave 1.5s ease-out, theme-glow 2s ease-in-out infinite'
         }}
       ></div>
-      <div className="absolute bottom-20 left-10 w-80 h-80 bg-gradient-to-tr from-emerald-600/8 to-blue-600/6 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-20 left-10 w-40 h-40 sm:w-60 sm:h-60 lg:w-80 lg:h-80 bg-gradient-to-tr from-emerald-600/4 to-blue-600/3 sm:from-emerald-600/6 sm:to-blue-600/4 lg:from-emerald-600/8 lg:to-blue-600/6 rounded-full blur-3xl sm:blur-[4rem] lg:blur-3xl opacity-40 sm:opacity-70 lg:opacity-100"></div>
       <div 
-        className="absolute top-40 left-16 w-64 h-64 rounded-full blur-3xl transition-all duration-1500 ease-out"
+        className="absolute top-40 left-16 w-32 h-32 sm:w-48 sm:h-48 lg:w-64 lg:h-64 rounded-full blur-3xl sm:blur-[4rem] lg:blur-3xl transition-all duration-1500 ease-out opacity-25 sm:opacity-50 lg:opacity-100"
         style={{
           ...getThemeStyles(selectedTheme).orbStyle,
           animation: 'theme-wave 1.8s ease-out 0.2s, theme-glow 2.5s ease-in-out infinite'
