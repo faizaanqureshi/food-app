@@ -4,6 +4,53 @@ import EmailForm from "./EmailForm";
 import Header from "./Header";
 
 export default function Hero() {
+  // Deterministic PRNG (mulberry32) to avoid SSR/CSR hydration mismatches
+  const createPRNG = (seed: number) => {
+    return () => {
+      seed |= 0;
+      seed = (seed + 0x6D2B79F5) | 0;
+      let t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
+      t ^= t + Math.imul(t ^ (t >>> 7), 61 | t);
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+  };
+
+  const randInRange = (rng: () => number, min: number, max: number) =>
+    min + rng() * (max - min);
+
+  // Precompute particle data deterministically so server and client match
+  const whiteParticles = Array.from({ length: 20 }, (_, i) => {
+    const rng = createPRNG(1000 + i);
+    return {
+      left: `${randInRange(rng, 0, 100).toFixed(6)}%`,
+      top: `${randInRange(rng, 0, 100).toFixed(6)}%`,
+      drift: randInRange(rng, 8, 14).toFixed(6),
+      pulse: randInRange(rng, 4, 8).toFixed(6),
+      delay: `${randInRange(rng, 0, 10).toFixed(6)}s`,
+    };
+  });
+
+  const purpleParticles = Array.from({ length: 12 }, (_, i) => {
+    const rng = createPRNG(2000 + i);
+    return {
+      left: `${randInRange(rng, 0, 100).toFixed(6)}%`,
+      top: `${randInRange(rng, 0, 100).toFixed(6)}%`,
+      sway: randInRange(rng, 10, 18).toFixed(6),
+      pulse: randInRange(rng, 6, 10).toFixed(6),
+      delay: `${randInRange(rng, 0, 12).toFixed(6)}s`,
+    };
+  });
+
+  const pinkParticles = Array.from({ length: 8 }, (_, i) => {
+    const rng = createPRNG(3000 + i);
+    return {
+      left: `${randInRange(rng, 0, 100).toFixed(6)}%`,
+      top: `${randInRange(rng, 0, 100).toFixed(6)}%`,
+      float: randInRange(rng, 12, 22).toFixed(6),
+      pulse: randInRange(rng, 8, 14).toFixed(6),
+      delay: `${randInRange(rng, 0, 15).toFixed(6)}s`,
+    };
+  });
   return (
     <div className="relative min-h-screen">
       {/* Header positioned at absolute top of page */}
@@ -60,16 +107,16 @@ export default function Hero() {
             }
           `}</style>
           
-          {/* Subtle white particles */}
-          {[...Array(20)].map((_, i) => (
+          {/* Subtle white particles (deterministic) */}
+          {whiteParticles.map((p, i) => (
             <div
               key={i}
               className={`absolute animate-pulse ${i >= 12 ? 'hidden sm:block' : ''}`}
               style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                animation: `subtle-drift ${8 + Math.random() * 6}s ease-in-out infinite, pulse ${4 + Math.random() * 4}s ease-in-out infinite`,
-                animationDelay: `${Math.random() * 10}s`
+                left: p.left,
+                top: p.top,
+                animation: `subtle-drift ${p.drift}s ease-in-out infinite, pulse ${p.pulse}s ease-in-out infinite`,
+                animationDelay: p.delay
               }}
             >
               <div 
@@ -78,16 +125,16 @@ export default function Hero() {
             </div>
           ))}
           
-          {/* Elegant purple particles */}
-          {[...Array(12)].map((_, i) => (
+          {/* Elegant purple particles (deterministic) */}
+          {purpleParticles.map((p, i) => (
             <div
               key={`purple-${i}`}
               className={`absolute ${i >= 8 ? 'hidden sm:block' : ''}`}
               style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                animation: `gentle-sway ${10 + Math.random() * 8}s ease-in-out infinite, pulse ${6 + Math.random() * 4}s ease-in-out infinite`,
-                animationDelay: `${Math.random() * 12}s`
+                left: p.left,
+                top: p.top,
+                animation: `gentle-sway ${p.sway}s ease-in-out infinite, pulse ${p.pulse}s ease-in-out infinite`,
+                animationDelay: p.delay
               }}
             >
               <div 
@@ -96,16 +143,16 @@ export default function Hero() {
             </div>
           ))}
           
-          {/* Refined pink accents */}
-          {[...Array(8)].map((_, i) => (
+          {/* Refined pink accents (deterministic) */}
+          {pinkParticles.map((p, i) => (
             <div
               key={`pink-${i}`}
               className={`absolute ${i >= 5 ? 'hidden sm:block' : ''}`}
               style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                animation: `whisper-float ${12 + Math.random() * 10}s ease-in-out infinite, pulse ${8 + Math.random() * 6}s ease-in-out infinite`,
-                animationDelay: `${Math.random() * 15}s`
+                left: p.left,
+                top: p.top,
+                animation: `whisper-float ${p.float}s ease-in-out infinite, pulse ${p.pulse}s ease-in-out infinite`,
+                animationDelay: p.delay
               }}
             >
               <div 

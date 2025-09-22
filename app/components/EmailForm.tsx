@@ -25,6 +25,7 @@ export default function EmailForm({
   const [suggestion, setSuggestion] = useState('');
   const [hasAttemptedSubmit, setHasAttemptedSubmit] = useState(false);
   const [showThankYouModal, setShowThankYouModal] = useState(false);
+  const [messageType, setMessageType] = useState<'error' | 'info'>('error');
 
   // Enterprise-grade email validation function
   const validateEmail = (email: string): { isValid: boolean; error?: string; suggestion?: string } => {
@@ -121,11 +122,14 @@ export default function EmailForm({
     const newEmail = e.target.value;
     setEmail(newEmail);
     
-    // Clear message and suggestion when user starts typing after an error
-    if ((message || suggestion) && hasAttemptedSubmit) {
-      setMessage('');
-      setSuggestion('');
-      setHasAttemptedSubmit(false);
+    // Clear any feedback (error/info/suggestion) when the user types again
+    if (message || suggestion) {
+      if (messageType === 'info' || hasAttemptedSubmit) {
+        setMessage('');
+        setSuggestion('');
+        setHasAttemptedSubmit(false);
+        setMessageType('error');
+      }
     }
   };
 
@@ -136,6 +140,7 @@ export default function EmailForm({
     // Validate email before submission
     if (!email || email.trim() === '') {
       setMessage('Please enter your email address');
+      setMessageType('error');
       setSuggestion('');
       return;
     }
@@ -143,12 +148,14 @@ export default function EmailForm({
     const validation = validateEmail(email);
     if (!validation.isValid) {
       setMessage(validation.error || 'Please enter a valid email address');
+      setMessageType('error');
       setSuggestion(validation.suggestion || '');
       return;
     }
 
     setIsSubmitting(true);
     setMessage('');
+    setMessageType('error');
     setSuggestion('');
 
     try {
@@ -167,12 +174,20 @@ export default function EmailForm({
 
       if (response.ok) {
         setEmail('');
-        setShowThankYouModal(true);
+        if (data.alreadySignedUp) {
+          setMessage("You've already signed up!");
+          setMessageType('info');
+          setHasAttemptedSubmit(false);
+        } else {
+          setShowThankYouModal(true);
+        }
       } else {
         setMessage(data.error || 'Something went wrong. Please try again.');
+        setMessageType('error');
       }
     } catch (error) {
       setMessage('Something went wrong. Please try again.');
+      setMessageType('error');
     } finally {
       setIsSubmitting(false);
     }
@@ -222,10 +237,16 @@ export default function EmailForm({
                 ?
               </p>
             ) : (
-              <div className="flex items-center space-x-2 text-sm text-red-400/90 font-light">
-                <svg className="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z" />
-                </svg>
+              <div className={`flex items-center space-x-2 text-sm font-light ${messageType === 'info' ? 'text-white/80' : 'text-red-400/90'}`}>
+                {messageType === 'info' ? (
+                  <svg className="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 16h-1v-4h-1m1-4h.01M12 2a10 10 0 100 20 10 10 0 000-20z" />
+                  </svg>
+                ) : (
+                  <svg className="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z" />
+                  </svg>
+                )}
                 <span>{message}</span>
               </div>
             )}
