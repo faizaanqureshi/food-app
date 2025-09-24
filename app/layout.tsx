@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Mirch - Dining Reimagined | Personalized Restaurant Discovery App",
+    default: "Mirch - Dining Reimagined",
     template: "%s | Mirch - Dining Reimagined"
   },
   description: "Experience seamless dining from discovery to payment with Mirch. Get personalized dish recommendations based on your taste profile, connect with similar food lovers, split bills effortlessly, and discover restaurants through AI-powered matching. One app. Every restaurant. Infinite possibilities.",
