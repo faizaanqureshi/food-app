@@ -133,33 +133,6 @@ NEXT_PUBLIC_SITE_URL=https://mirch.app
 npm run build
 ```
 
-### Deploy to Vercel
-
-The easiest way to deploy is using the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme):
-
-1. Push your code to GitHub
-2. Import your repository on Vercel
-3. Vercel will automatically detect Next.js and configure the build
-4. Your site will be deployed and available at a Vercel URL
-
-### Other Deployment Options
-
-This Next.js app can be deployed to any platform that supports Node.js:
-- [Netlify](https://docs.netlify.com/integrations/frameworks/next-js/)
-- [Railway](https://railway.app/)
-- [Render](https://render.com/)
-- Self-hosted with Docker
-
-## 🤝 Contributing
-
-We welcome contributions to improve the Mirch landing page! Please follow these steps:
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
 ## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
