@@ -67,7 +67,7 @@ export const metadata: Metadata = {
     ]
   },
   manifest: '/site.webmanifest',
-  themeColor: '#000000',
+  themeColor: '#09050D',
   viewport: {
     width: 'device-width',
     initialScale: 1,
@@ -123,9 +123,9 @@ export const metadata: Metadata = {
     'apple-mobile-web-app-capable': 'yes',
     'mobile-web-app-capable': 'yes',
     'application-name': 'Mirch',
-    'msapplication-TileColor': '#000000',
-    'msapplication-navbutton-color': '#000000',
-    'theme-color': '#000000',
+    'msapplication-TileColor': '#09050D',
+    'msapplication-navbutton-color': '#09050D',
+    'theme-color': '#09050D',
   }
 };
 
@@ -138,10 +138,10 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-        <meta name="theme-color" content="#000000" />
+        <meta name="theme-color" content="#09050D" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="msapplication-navbutton-color" content="#000000" />
+        <meta name="msapplication-navbutton-color" content="#09050D" />
         
         {/* Additional SEO Meta Tags */}
         <meta name="language" content="EN" />
