@@ -123,11 +123,11 @@ body {
   }
   body {
     @apply bg-background text-foreground;
-    background-color: #000000 !important;
+    background-color: #09050D !important;
   }
   html {
     scroll-behavior: smooth;
-    background-color: #000000 !important;
+    background-color: #09050D !important;
   }
 }
 
