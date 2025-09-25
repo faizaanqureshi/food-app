@@ -141,7 +141,7 @@ export default function RootLayout({
         <meta name="theme-color" content="#09050D" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="msapplication-navbutton-color" content="#09050D" />
+        <meta name="msapplication-navbutton-color" content="#000000" />
         
         {/* Additional SEO Meta Tags */}
         <meta name="language" content="EN" />
